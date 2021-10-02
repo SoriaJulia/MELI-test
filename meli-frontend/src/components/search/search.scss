@@ -1,0 +1,9 @@
+.navbar{
+    background-color: #FFE600;
+    &  *{
+        border: none;
+    }
+    & .container{
+        justify-content: flex-start;
+    }
+  }

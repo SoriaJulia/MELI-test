@@ -1,0 +1,23 @@
+.item {
+    &.image{
+        margin: 16px;
+        border-radius: 4px;
+        object-fit: contain;
+    }
+    &.price{
+        font-size: 24px;
+        padding: 32px 0;
+    }
+    &.title{
+        font-size: 18px;
+    }
+    &.state{
+        font-size: 12px;
+        padding-top: 40px;
+    }
+}
+
+.row > *{
+    padding: 0;
+    background-color: #FFFFFF;
+}
