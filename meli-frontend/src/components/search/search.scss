@@ -1,9 +1,16 @@
 .navbar{
     background-color: #FFE600;
-    &  *{
+    *{
         border: none;
     }
-    & .container{
+    .container{
         justify-content: flex-start;
+    }
+    .btn-light{
+        background-color: #EEEEEE;
+    }
+    .form-control{
+        font-size: 18px;
+        color: #999999;
     }
   }

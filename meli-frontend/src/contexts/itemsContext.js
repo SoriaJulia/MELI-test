@@ -4,10 +4,10 @@ function itemsReducer(state, action){
     switch (action.type){
 
         case "setItemsList": {
-            return {...state, items:action.payload.items};
+            return {...state, items:action.payload.items, categories:action.payload.categories, id:null, item:null};
         }
         case "setItemDetail": {
-            return state
+            return {...state, id:action.payload.id, item:action.payload.item, items:[], categories:[]};
 
         }
         case "clear":{ 
@@ -20,7 +20,7 @@ function itemsReducer(state, action){
 }
 const ItemsContext = createContext();
 export default function ItemsProvider(props){
-    const [state, dispatch] = useReducer(itemsReducer,{id:null, items:[], detail:null});
+    const [state, dispatch] = useReducer(itemsReducer,{id:null, items:[], categories:[], item:null});
     return <ItemsContext.Provider value={{state, dispatch}} {...props}/> 
 }
 

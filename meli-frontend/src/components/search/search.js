@@ -1,30 +1,38 @@
 import'./search.scss'
-import{useEffect, useState} from "react"
+import{useEffect, useState, memo} from "react"
 import useAsync from "../../hooks/useAsync";
 import Navbar from "react-bootstrap/Navbar";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Container from 'react-bootstrap/esm/Container';
+import { useLocation } from 'react-router';
 
-function searchItem(searchQuery) {
-    return fetch(`http://localhost:3000/api/items?q=${searchQuery}`).then((value)=>{return value.json()})
-  }
 
 export default function Search(props){
   const [inputVal, setInputVal] = useState("");
   const {error, status, data, run} = useAsync();
   const {setItemsList} = props;
-
+  const {search} = useLocation()
   useEffect(()=>{
       if(status === "resolved") {
-          setItemsList(data);
+          console.log('search',data)
+          setItemsList(data.items, data.categories);
       }
   },[setItemsList, data, status]);
 
+  useEffect(()=>{
+    const regex = /^\?search+=([\w-]*)?$/;
+    if(regex.test(search)){
+      const searchValue = regex.exec(search).slice(-1) 
+      setInputVal(searchValue)
+      // run(searchItem(searchValue));
+    }
+  },[search,run])
+
   const handleSubmit = (e) => {
       e.preventDefault();
-      run(searchItem(inputVal));
+      // run(searchItem(inputVal));
     }
 
   return (
@@ -43,11 +51,17 @@ export default function Search(props){
               <Form.Control       
                 placeholder="Nunca dejes de buscar"
                 className="mr-2"
-                aria-label="Search"
+                aria-label="Buscador"
                 value={inputVal} 
                 onChange={(e)=>setInputVal(e.target.value)}
                 />
-              <Button variant="secondary">Search</Button>
+                <Button variant="light">
+                  <img 
+                  src="/ic_Search.png"
+                  srcSet="/ic_Search@2x.png.png"
+                  alt="Icono de busqueda"
+                  />
+                </Button>
             </InputGroup>
           </Form>    
         </Container>
