@@ -1,17 +1,17 @@
-import BootstrapBreadcrumb from 'react-bootstrap/Breadcrumb';
-
+import Col from 'react-bootstrap/esm/Col';
+import './breadcrumb.scss'
 export default function Breadcrumb(props){
     const {categories} = props
     const mutableCategories = [...categories]
     const active = mutableCategories.pop();
     return(
-        <BootstrapBreadcrumb>
+        <Col className="categories" xs={{span:10, offset:1}}>
             {
-                mutableCategories.map(category => {
-                   return <BootstrapBreadcrumb.Item href="#" key={category} className="link-secondary">{category}</BootstrapBreadcrumb.Item>
+                mutableCategories.map(category=>{
+                    return <span key="category" >{`${category} > `}</span>
                 })
             }
-            <BootstrapBreadcrumb.Item active>{active}</BootstrapBreadcrumb.Item>
-        </BootstrapBreadcrumb>
+            <span className="categories active">{active}</span>
+        </Col>
     )
 }

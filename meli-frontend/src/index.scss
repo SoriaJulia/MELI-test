@@ -10,9 +10,12 @@ body {
   background-color: #eeeeee;
 }
 
-.breadcrumb{
-  font-size: 14px;
-}
+
 hr {
   margin: 0;
+}
+
+.row > *{
+  padding: 0;
+  background-color: #FFFFFF;
 }

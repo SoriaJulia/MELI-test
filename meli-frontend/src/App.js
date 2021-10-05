@@ -26,10 +26,10 @@ function ItemsRoutes(props){
     </Route>
     <Switch>
       <Route path="/items/:id">
-        <ItemDetail setItemDetail={setItemDetail} item={state.item}></ItemDetail>
+        <ItemDetail setItemDetail={setItemDetail} item={state.item} categories={state.categories}></ItemDetail>
       </Route>
       <Route path="/items">
-        <ItemsList items={state.items} categories={state.categories}/>
+        <ItemsList items={state.items} setItemsList={setItemsList} categories={state.categories}/>
       </Route>
     </Switch>  
     </>

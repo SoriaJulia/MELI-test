@@ -7,7 +7,7 @@ function itemsReducer(state, action){
             return {...state, items:action.payload.items, categories:action.payload.categories, id:null, item:null};
         }
         case "setItemDetail": {
-            return {...state, id:action.payload.id, item:action.payload.item, items:[], categories:[]};
+            return {...state, id:action.payload.id, item:action.payload.item, items:[]};
 
         }
         case "clear":{ 

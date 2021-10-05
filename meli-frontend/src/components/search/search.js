@@ -6,34 +6,27 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Container from 'react-bootstrap/esm/Container';
-import { useLocation } from 'react-router';
+import { useLocation} from 'react-router';
+import useNavigate from '../../hooks/useNavigate';
 
 
 export default function Search(props){
   const [inputVal, setInputVal] = useState("");
-  const {error, status, data, run} = useAsync();
-  const {setItemsList} = props;
-  const {search} = useLocation()
-  useEffect(()=>{
-      if(status === "resolved") {
-          console.log('search',data)
-          setItemsList(data.items, data.categories);
-      }
-  },[setItemsList, data, status]);
-
+  const {search} = useLocation();
+  const navigate = useNavigate()
   useEffect(()=>{
     const regex = /^\?search+=([\w-]*)?$/;
+    let searchValue = '';
     if(regex.test(search)){
-      const searchValue = regex.exec(search).slice(-1) 
-      setInputVal(searchValue)
-      // run(searchItem(searchValue));
+      searchValue = regex.exec(search).slice(-1) 
     }
-  },[search,run])
-
+    setInputVal(searchValue)
+  },[search])
+  
   const handleSubmit = (e) => {
-      e.preventDefault();
-      // run(searchItem(inputVal));
-    }
+    e.preventDefault();
+    navigate(`/items?search=${inputVal}`)
+  }
 
   return (
       <Navbar>
@@ -55,11 +48,12 @@ export default function Search(props){
                 value={inputVal} 
                 onChange={(e)=>setInputVal(e.target.value)}
                 />
-                <Button variant="light">
+                <Button variant="light" type="submit">
                   <img 
                   src="/ic_Search.png"
                   srcSet="/ic_Search@2x.png.png"
                   alt="Icono de busqueda"
+                  height="18px"
                   />
                 </Button>
             </InputGroup>

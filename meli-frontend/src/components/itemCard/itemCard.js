@@ -1,17 +1,13 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/esm/Col';
 import Image from 'react-bootstrap/Image'
-import currencies from '../../constants/currencies'
-import {ARS} from '../../constants/currencies'
+import { formatPrice } from "../../utils";
 import { useHistory } from "react-router-dom";
 
 export default function ItemCard (props) {
     const {item} = props
     const history = useHistory()
-    function formatPrice(currencyId = ARS, price){
-        if(!price) return;
-        return `${currencies[currencyId]}  ${price.toLocaleString('es')}`  
-    }
+
     function onClickHandler(e){
         history.push(`/items/${item.id}`)
     }
@@ -19,7 +15,7 @@ export default function ItemCard (props) {
         <Row key={item.id} onClick={onClickHandler}>
             <Col xs={{span:2, offset:1}} >
                 <Image 
-                src={item.thumbnail} 
+                src={item.picture} 
                 alt={item.title}
                 width="180px" 
                 height="180px" 
@@ -27,7 +23,13 @@ export default function ItemCard (props) {
             </Col>
             <Col xs={6}>
                 <div className='item price'>
-                    {formatPrice(item.currency_id, item.price)}
+                    {formatPrice(item.price.currency, item.price.amount)}
+                    <> {item.free_shipping && 
+                        <img 
+                        alt="Envio gratis"
+                        src="/ic_shipping.png"
+                        srcSet="/ic_shipping@2x.png.png"
+                        height="24px"/>}</>
                 </div>
                 <div className='item title'>
                     {item.title}
@@ -35,7 +37,7 @@ export default function ItemCard (props) {
             </Col>
             <Col xs={2}>
                 <div className='item state'>
-                    {item.address.state_name}
+                    {item.state}
                 </div>
             </Col>
             <hr/>
