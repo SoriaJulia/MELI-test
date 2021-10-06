@@ -1,34 +1,33 @@
-.detail{
-    padding-top: 32px;
-    color: #333333;
-    padding-right: 32px;
-    .condition{
-        font-size: 14px;
-        margin-bottom: 16px;
-    }
-    .title{
-        font-size: 24px;
-    }
-    .price{
-        font-size: 46px;
-        margin: 32px 0;
-    }
-    .btn{
-        background-color: #3483FA;
-    }
-
+.detail {
+  padding-top: 32px;
+  color: #333333;
+  padding-right: 32px;
+  .condition {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .price {
+    font-size: 46px;
+    margin: 32px 0;
+  }
+  .btn {
+    background-color: #3483fa;
+  }
 }
 
-.description{
-    padding-left: 32px;
-    &.title{
-        font-size: 28px;
-        color: #333333;
-    }
-    &.content{
-        padding-top:32px;
-        padding-bottom: 32px;
-        font-size: 16px;
-        color:#666666
-    }
+.description {
+  padding-left: 32px;
+  &.title {
+    font-size: 28px;
+    color: #333333;
+  }
+  &.content {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    font-size: 16px;
+    color: #666666;
+  }
 }

@@ -1,16 +1,23 @@
-import useSafeDispatch from "./useSafeDispatch"
-import {useReducer, useCallback} from "react"
+import useSafeDispatch from './useSafeDispatch'
+import { useReducer, useCallback } from 'react'
+
+export const states = {
+  ILDE: 'ilde',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected',
+}
 
 function asyncReducer(state, action) {
   switch (action.type) {
-    case 'pending': {
-      return {status: 'pending', data: null, error: null}
+    case states.PENDING: {
+      return { status: states.PENDING, data: null, error: null }
     }
-    case 'resolved': {
-      return {status: 'resolved', data: action.data, error: null}
+    case states.RESOLVED: {
+      return { status: states.RESOLVED, data: action.data, error: null }
     }
-    case 'rejected': {
-      return {status: 'rejected', data: null, error: action.error}
+    case states.REJECTED: {
+      return { status: states.REJECTED, data: null, error: action.error }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
@@ -20,7 +27,7 @@ function asyncReducer(state, action) {
 
 export default function useAsync(initialState) {
   const [state, unsafeDispatch] = useReducer(asyncReducer, {
-    status: 'idle',
+    status: states.ILDE,
     data: null,
     error: null,
     ...initialState,
@@ -28,21 +35,21 @@ export default function useAsync(initialState) {
 
   const dispatch = useSafeDispatch(unsafeDispatch)
 
-  const {data, error, status} = state
+  const { data, error, status } = state
 
   const run = useCallback(
-    promise => {
-      dispatch({type: 'pending'})
+    (promise) => {
+      dispatch({ type: states.PENDING })
       promise.then(
-        data => {
-          dispatch({type: 'resolved', data})
+        (data) => {
+          dispatch({ type: states.RESOLVED, data })
         },
-        error => {
-          dispatch({type: 'rejected', error})
-        },
+        (error) => {
+          dispatch({ type: states.REJECTED, error })
+        }
       )
     },
-    [dispatch],
+    [dispatch]
   )
 
   return {

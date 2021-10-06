@@ -1,6 +1,6 @@
-export const ARS = 'ARS';
+export const ARS = 'ARS'
 
 const currencies = {
-    [ARS]:'$'   
+  [ARS]: '$',
 }
-export default currencies; 
+export default currencies

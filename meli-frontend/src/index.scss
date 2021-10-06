@@ -1,21 +1,18 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
 body {
   margin: 0;
-  font-family: 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eeeeee;
 }
 
-
 hr {
   margin: 0;
 }
 
-.row > *{
+.row > * {
   padding: 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }

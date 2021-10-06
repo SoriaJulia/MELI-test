@@ -1,4 +1,4 @@
 export const author = {
-    name:'Julia',
-    lastname:'Soria'
+  name: 'Julia',
+  lastname: 'Soria',
 }

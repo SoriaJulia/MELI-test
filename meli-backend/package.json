@@ -14,5 +14,8 @@
     "morgan": "~1.9.1",
     "node-fetch": "^3.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
 }

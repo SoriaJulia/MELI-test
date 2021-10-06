@@ -1,6 +1,5 @@
-
 const conditions = {
-    'new':'Nuevo',
-    'used':'Usado'
+  new: 'Nuevo',
+  used: 'Usado',
 }
-export default conditions; 
+export default conditions
